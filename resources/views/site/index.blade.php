@@ -61,10 +61,10 @@
             <div class="row mb-5">
                 @if($sleep->sleep_start_at)
                 <div class="col">
-                    <input class="form-control" name="sleep_start_at" value="{{$sleep->sleep_start_at}}" readonly>
+                    <input class="form-control form-control-sm" name="sleep_start_at" value="{{$sleep->sleep_start_at}}" readonly>
                 </div>
                 <div class="col">
-                    <input class="form-control" name="sleep_finish_at" value="{{$sleep->sleep_finish_at}}" readonly>
+                    <input class="form-control form-control-sm" name="sleep_finish_at" value="{{$sleep->sleep_finish_at}}" readonly>
                 </div>
                 @endif
             </div>
@@ -91,10 +91,10 @@
         <div class="row mb-5">
             @if($eat->eat_start_at)
                 <div class="col">
-                    <input class="form-control" name="eat_start_at" value="{{$eat->eat_start_at}}" readonly>
+                    <input class="form-control form-control-sm" name="eat_start_at" value="{{$eat->eat_start_at}}" readonly>
                 </div>
                 <div class="col">
-                    <input class="form-control" name="eat_finish_at" value="{{$eat->eat_finish_at}}" readonly>
+                    <input class="form-control form-control-sm" name="eat_finish_at" value="{{$eat->eat_finish_at}}" readonly>
                 </div>
             @endif
         </div>
@@ -121,10 +121,10 @@
         <div class="row mb-5">
             @if(!empty($walk->walk_start_at))
                 <div class="col">
-                    <input class="form-control" name="eat_start_at" value="{{$walk->walk_start_at}}" readonly>
+                    <input class="form-control form-control-sm" name="eat_start_at" value="{{$walk->walk_start_at}}" readonly>
                 </div>
                 <div class="col">
-                    <input class="form-control" name="eat_finish_at" value="{{$walk->walk_finish_at}}" readonly>
+                    <input class="form-control form-control-sm" name="eat_finish_at" value="{{$walk->walk_finish_at}}" readonly>
                 </div>
             @endif
         </div>
