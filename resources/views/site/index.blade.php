@@ -54,7 +54,7 @@
                 <form action="{{route('sleep.update', $sleep)}}" method="post">
                     @csrf
                     @method('patch')
-                    <button class="btn btn-warning" type="submit">Конец</button>
+                    <button class="btn btn-warning" type="submit" @if(!empty($sleep->sleep_finish_at)) disabled @endif>Конец</button>
                 </form>
 			</div>
             @endif
@@ -86,7 +86,7 @@
                     <form action="{{route('eat.update', $eat)}}" method="post">
                         @csrf
                         @method('patch')
-                        <button class="btn btn-warning" type="submit">Конец</button>
+                        <button class="btn btn-warning" type="submit" @if(!empty($eat->eat_finish_at)) disabled @endif>Конец</button>
                     </form>
                 </div>
             @endif
@@ -118,7 +118,7 @@
                     <form action="{{route('walk.update', $walk)}}" method="post">
                         @csrf
                         @method('patch')
-                        <button class="btn btn-warning" type="submit">Конец</button>
+                        <button class="btn btn-warning" type="submit" @if(!empty($walk->walk_finish_at)) disabled @endif>Конец</button>
                     </form>
                 </div>
             @endif

@@ -28,12 +28,16 @@ class ReportController extends Controller
 
         $filter = app()->make(SleepFilter::class, ['queryParams' => array_filter($data)]);
 
+
         $sleeps = Sleep::filter($filter)->where('user_id', 1)->get();
 
         $sleeps = $sleeps->map(function($sleep) {
             $start = strtotime($sleep->sleep_start_at);
             $finish = strtotime($sleep->sleep_finish_at);
-            return $finish - $start;
+            if($finish)
+            {
+                return $finish - $start;
+            }
         });
 
         $total_sleep = round(array_sum($sleeps->toArray())/60/60, 1);
@@ -45,7 +49,10 @@ class ReportController extends Controller
         $eats = $eats->map(function($eat) {
             $start = strtotime($eat->eat_start_at);
             $finish = strtotime($eat->eat_finish_at);
-            return $finish - $start;
+            if($finish)
+            {
+                return $finish - $start;
+            }
         });
 
         $total_eat = round(array_sum($eats->toArray())/60/60,1);
@@ -57,7 +64,10 @@ class ReportController extends Controller
         $walks = $walks->map(function($walk) {
             $start = strtotime($walk->walk_start_at);
             $finish = strtotime($walk->walk_finish_at);
-            return $finish - $start;
+            if($finish)
+            {
+                return $finish - $start;
+            }
         });
 
         $total_walk = round(array_sum($walks->toArray())/60/60, 1);

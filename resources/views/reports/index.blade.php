@@ -47,7 +47,8 @@
                 id="date"
                 class="form-select form-select-sm"
                 onchange="this.form.submit()">
-                @forelse($dates as $date)
+                <option value="">За все время ...</option>
+            @forelse($dates as $date)
                     <option value="{{$date}}" @if(isset($old_filter['date']) && $old_filter['date'] == $date) selected @endif>{{$date}}</option>
                 @empty
                   <option value="">Нет записей</option>
