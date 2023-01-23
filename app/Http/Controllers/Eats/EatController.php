@@ -42,6 +42,7 @@ class EatController extends Controller
     {
         $eat = new Eat();
         $eat->eat_start_at = date('Y-m-d H:i:s');
+        $eat->user_id = 1;
         $eat->save();
         return redirect()->route('site.index');
     }

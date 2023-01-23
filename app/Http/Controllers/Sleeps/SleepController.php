@@ -42,6 +42,7 @@ class SleepController extends Controller
     {
         $sleep = new Sleep();
         $sleep->sleep_start_at = date('Y-m-d H:i:s');
+        $sleep->user_id = 1;
         $sleep->save();
         return redirect()->route('site.index');
     }
@@ -79,7 +80,7 @@ class SleepController extends Controller
     {
 
         $sleep->update([
-            'sleep_finish_at' => date('Y-m-d H:i:s')
+            'sleep_finish_at' => date('Y-m-d H:i:s'),
         ]);
 
         return redirect()->route('site.index');

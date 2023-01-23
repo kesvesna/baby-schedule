@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->dateTime('sleep_start_at')->nullable()->default(null);
             $table->dateTime('sleep_finish_at')->nullable()->default(null);
+            $table->foreignId('user_id');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -29,6 +30,10 @@ return new class extends Migration
      */
     public function down()
     {
+        Schema::table('sleeps', function (Blueprint $table) {
+            $table->dropForeign(['user_id']);
+        });
+
         Schema::dropIfExists('sleeps');
     }
 };

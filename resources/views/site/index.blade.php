@@ -19,7 +19,7 @@
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="#">Режим ребенка</a>
+			<a class="navbar-brand" href="{{route('site.index')}}">Режим ребенка</a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
 				data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
 				aria-label="Toggle navigation">
@@ -28,27 +28,28 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 					<li class="nav-item">
-						<a class="nav-link active" aria-current="page" href="{{route('site.index')}}">Главная</a>
+						<a class="nav-link  {{ request()->routeIs('site.index')?'active':'' }}" aria-current="page" href="{{route('site.index')}}">Главная</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="{{route('report.index')}}">Отчет</a>
+						<a class="nav-link  {{ request()->routeIs('report.index')?'active':'' }}" href="{{route('report.index')}}">Отчет</a>
 					</li>
 				</ul>
 			</div>
 		</div>
 	</nav>
 	<div class="container my-3">
+        <div class="card shadow-lg p-3 mb-1">
 		<div class="row">
 			<h2>Сон</h2>
 		</div>
-		<div class="row row-cols-2 mb-3">
+		<div class="row row-cols-2 mb-2">
 			<div class="col">
                 <form action="{{route('sleep.store')}}" method="post">
                     @csrf
                     <button class="btn btn-success" type="submit">Начало</button>
                 </form>
 			</div>
-            @if($sleep->sleep_start_at)
+            @if(!empty($sleep->sleep_start_at))
 			<div class="col">
                 <form action="{{route('sleep.update', $sleep)}}" method="post">
                     @csrf
@@ -58,8 +59,8 @@
 			</div>
             @endif
         </div>
-            <div class="row mb-5">
-                @if($sleep->sleep_start_at)
+            <div class="row">
+                @if(!empty($sleep->sleep_start_at))
                 <div class="col">
                     <input class="form-control form-control-sm" name="sleep_start_at" value="{{$sleep->sleep_start_at}}" readonly>
                 </div>
@@ -68,17 +69,19 @@
                 </div>
                 @endif
             </div>
+        </div>
+        <div class="card shadow-lg p-3 mb-1">
 		<div class="row">
 			<h2>Кормление</h2>
 		</div>
-        <div class="row row-cols-2 mb-3">
+        <div class="row row-cols-2 mb-2">
             <div class="col">
                 <form action="{{route('eat.store')}}" method="post">
                     @csrf
                     <button class="btn btn-success" type="submit">Начало</button>
                 </form>
             </div>
-            @if($eat->eat_start_at)
+            @if(!empty($eat->eat_start_at))
                 <div class="col">
                     <form action="{{route('eat.update', $eat)}}" method="post">
                         @csrf
@@ -88,8 +91,8 @@
                 </div>
             @endif
         </div>
-        <div class="row mb-5">
-            @if($eat->eat_start_at)
+        <div class="row">
+            @if(!empty($eat->eat_start_at))
                 <div class="col">
                     <input class="form-control form-control-sm" name="eat_start_at" value="{{$eat->eat_start_at}}" readonly>
                 </div>
@@ -98,10 +101,12 @@
                 </div>
             @endif
         </div>
+        </div>
+        <div class="card shadow-lg p-3 mb-1">
 		<div class="row">
 			<h2>Прогулка</h2>
 		</div>
-        <div class="row row-cols-2 mb-3">
+        <div class="row row-cols-2 mb-2">
             <div class="col">
                 <form action="{{route('walk.store')}}" method="post">
                     @csrf
@@ -118,7 +123,7 @@
                 </div>
             @endif
         </div>
-        <div class="row mb-5">
+        <div class="row">
             @if(!empty($walk->walk_start_at))
                 <div class="col">
                     <input class="form-control form-control-sm" name="eat_start_at" value="{{$walk->walk_start_at}}" readonly>
@@ -127,6 +132,7 @@
                     <input class="form-control form-control-sm" name="eat_finish_at" value="{{$walk->walk_finish_at}}" readonly>
                 </div>
             @endif
+        </div>
         </div>
 	</div>
 

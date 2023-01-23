@@ -38,6 +38,7 @@ class WalkController extends Controller
     {
         $walk = new Walk();
         $walk->walk_start_at = date('Y-m-d H:i:s');
+        $walk->user_id = 1;
         $walk->save();
         return redirect()->route('site.index');
     }

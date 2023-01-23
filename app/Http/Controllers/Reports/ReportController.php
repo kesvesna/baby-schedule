@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\Reports;
 
 use App\Http\Controllers\Controller;
+use App\Http\Filters\Eats\EatFilter;
+use App\Http\Filters\Sleeps\SleepFilter;
+use App\Http\Filters\Walks\WalkFilter;
+use App\Http\Requests\Sleeps\SleepFilterRequest;
 use Illuminate\Http\Request;
 
 use App\Models\Sleeps\Sleep;
@@ -17,13 +21,60 @@ class ReportController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(SleepFilterRequest $request)
     {
 
+        $data = $request->validated();
+
+        $filter = app()->make(SleepFilter::class, ['queryParams' => array_filter($data)]);
+
+        $sleeps = Sleep::filter($filter)->where('user_id', 1)->get();
+
+        $sleeps = $sleeps->map(function($sleep) {
+            $start = strtotime($sleep->sleep_start_at);
+            $finish = strtotime($sleep->sleep_finish_at);
+            return $finish - $start;
+        });
+
+        $total_sleep = round(array_sum($sleeps->toArray())/60/60, 1);
+
+        $filter = app()->make(EatFilter::class, ['queryParams' => array_filter($data)]);
+
+        $eats = Eat::filter($filter)->where('user_id', 1)->get();
+
+        $eats = $eats->map(function($eat) {
+            $start = strtotime($eat->eat_start_at);
+            $finish = strtotime($eat->eat_finish_at);
+            return $finish - $start;
+        });
+
+        $total_eat = round(array_sum($eats->toArray())/60/60,1);
+
+        $filter = app()->make(WalkFilter::class, ['queryParams' => array_filter($data)]);
+
+        $walks = Walk::filter($filter)->where('user_id', 1)->get();
+
+        $walks = $walks->map(function($walk) {
+            $start = strtotime($walk->walk_start_at);
+            $finish = strtotime($walk->walk_finish_at);
+            return $finish - $start;
+        });
+
+        $total_walk = round(array_sum($walks->toArray())/60/60, 1);
+
+        $dates = Sleep::where('user_id', 1)->get();
+        $dates = $dates->map(function($date){
+            return  \Carbon\Carbon::parse($date->sleep_start_at)->format('Y-m-d');
+        });
+
+        $dates = $dates->unique();
+
         return view('reports.index', [
-            'sleeps' => Sleep::all(),
-            'eats' => Eat::all(),
-            'walk' => Walk::all(),
+           'dates' => $dates,
+            'old_filter' => $data,
+            'total_sleep' => $total_sleep,
+            'total_eat' => $total_eat,
+            'total_walk' => $total_walk,
         ]);
     }
 
