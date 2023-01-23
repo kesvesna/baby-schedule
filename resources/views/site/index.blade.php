@@ -18,7 +18,7 @@
 
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<div class="container-fluid">
+		<div class="container">
 			<a class="navbar-brand" href="{{route('site.index')}}">Режим ребенка</a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
 				data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -133,6 +133,11 @@
                 </div>
             @endif
         </div>
+        </div>
+        <div class="row d-lg-none pt-2">
+            <div class="col">
+                <a class="btn btn-sm btn-primary col-12 shadow-lg" href="{{route('report.index')}}">ОТЧЕТ</a>
+            </div>
         </div>
 	</div>
 
