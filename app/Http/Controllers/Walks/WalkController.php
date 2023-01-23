@@ -5,9 +5,14 @@ namespace App\Http\Controllers\Walks;
 use App\Http\Controllers\Controller;
 use App\Models\Walks\Walk;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class WalkController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -38,7 +43,7 @@ class WalkController extends Controller
     {
         $walk = new Walk();
         $walk->walk_start_at = date('Y-m-d H:i:s');
-        $walk->user_id = 1;
+        $walk->user_id = Auth::id();
         $walk->save();
         return redirect()->route('site.index');
     }

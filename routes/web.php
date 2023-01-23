@@ -20,15 +20,29 @@ use App\Http\Controllers\Reports\ReportController as ReportController;
 |
 */
 
+Route::middleware(['auth'])->group(function () {
 
-Route::resources([
-    'sleep' => SleepController::class,
-    'eat' => EatController::class,
-    'walk' => WalkController::class,
-    'report' => ReportController::class,
-]);
+    Route::resources([
+        'sleep' => SleepController::class,
+        'eat' => EatController::class,
+        'walk' => WalkController::class,
+        'report' => ReportController::class,
+    ]);
 
-Route::get('/{sleep?}/{eat?}/{walk?}', [SiteController::class, 'index'])->name('site.index');
+    Route::get('/', [SiteController::class, 'index'])->name('site.index');
 
+});
+
+Route::middleware(['guest'])->group(function () {
+
+    Route::any('/login', function () {
+        return view('auth.login');
+    });
+
+    Route::any('/', function () {
+        return view('auth.login');
+    });
+
+});
 
 

@@ -9,9 +9,14 @@ use App\Models\Eats\Eat;
 use App\Models\Sleeps\Sleep;
 use App\Models\Walks\Walk;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EatController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -42,7 +47,7 @@ class EatController extends Controller
     {
         $eat = new Eat();
         $eat->eat_start_at = date('Y-m-d H:i:s');
-        $eat->user_id = 1;
+        $eat->user_id = Auth::id();
         $eat->save();
         return redirect()->route('site.index');
     }

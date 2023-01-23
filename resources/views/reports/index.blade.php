@@ -1,43 +1,12 @@
-<!doctype html>
-<html class="no-js" lang="">
+@extends('main')
 
-<head>
-    <meta charset="utf-8">
-    <title></title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@section('title', 'Главная')
 
-    <meta property="og:title" content="">
-    <meta property="og:type" content="">
-    <meta property="og:url" content="">
-    <meta property="og:image" content="">
+@section('header')
+    @include('menu')
+@endsection
 
-    <link rel="stylesheet" href="{{asset('../assets/css/normalize.css')}}">
-    <link rel="stylesheet" href="{{asset('../assets/css/bootstrap.min.css')}}">
-    <script src="{{asset('../assets/js/chart.umd.js')}}"></script>
-</head>
-
-<body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="{{route('site.index')}}">Режим ребенка</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link   {{ request()->routeIs('site.index')?'active':'' }}" aria-current="page" href="{{route('site.index')}}">Главная</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link  {{ request()->routeIs('report.index')?'active':'' }}" href="{{route('report.index')}}">Отчет</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+@section('content')
 <div class="container my-3">
         <div class="row row-cols-1">
             <label for="date" class="form-label">Выберите дату</label>
@@ -109,9 +78,5 @@
         }
     });
 </script>
-
-<script src="{{asset('../assets/js/bootstrap.bundle.min.js')}}"></script>
-</body>
-
-</html>
+@endsection
 

@@ -12,10 +12,15 @@ use Illuminate\Http\Request;
 use App\Models\Sleeps\Sleep;
 use App\Models\Eats\Eat;
 use App\Models\Walks\Walk;
+use Illuminate\Support\Facades\Auth;
 
 
 class ReportController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -40,11 +45,11 @@ class ReportController extends Controller
             }
         });
 
-        $total_sleep = round(array_sum($sleeps->toArray())/60/60, 1);
+        $total_sleep = round(array_sum($sleeps->toArray())/3600, 1);
 
         $filter = app()->make(EatFilter::class, ['queryParams' => array_filter($data)]);
 
-        $eats = Eat::filter($filter)->where('user_id', 1)->get();
+        $eats = Eat::filter($filter)->where('user_id', Auth::id())->get();
 
         $eats = $eats->map(function($eat) {
             $start = strtotime($eat->eat_start_at);
@@ -55,11 +60,11 @@ class ReportController extends Controller
             }
         });
 
-        $total_eat = round(array_sum($eats->toArray())/60/60,1);
+        $total_eat = round(array_sum($eats->toArray())/3600,1);
 
         $filter = app()->make(WalkFilter::class, ['queryParams' => array_filter($data)]);
 
-        $walks = Walk::filter($filter)->where('user_id', 1)->get();
+        $walks = Walk::filter($filter)->where('user_id', Auth::id())->get();
 
         $walks = $walks->map(function($walk) {
             $start = strtotime($walk->walk_start_at);
@@ -70,9 +75,9 @@ class ReportController extends Controller
             }
         });
 
-        $total_walk = round(array_sum($walks->toArray())/60/60, 1);
+        $total_walk = round(array_sum($walks->toArray())/3600, 1);
 
-        $dates = Sleep::where('user_id', 1)->get();
+        $dates = Sleep::where('user_id', Auth::id())->get();
         $dates = $dates->map(function($date){
             return  \Carbon\Carbon::parse($date->sleep_start_at)->format('Y-m-d');
         });
