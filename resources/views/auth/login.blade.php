@@ -24,7 +24,7 @@
                                 <div class="col-md-6">
                                     <input id="email" placeholder="mail@mail.ru" type="email" class="form-control" name="email" value="" required autocomplete="email" autofocus>
                                     @error('email')
-                                    <div>{{$message}}</div>
+                                    <div class="text-danger">{{$message}}</div>
                                     @enderror
                                 </div>
                             </div>
@@ -33,7 +33,7 @@
                                 <div class="col-md-6">
                                     <input id="password" type="password" class="form-control" name="password" value="" required autocomplete="current-password">
                                     @error('password')
-                                    <div>{{$message}}</div>
+                                    <div class="text-danger">{{$message}}</div>
                                     @enderror
                                 </div>
                             </div>
@@ -48,7 +48,7 @@
                                 </div>
                             </div>
                             <div class="row row-cols-1 row-cols-md-2">
-                                <div class="col">
+                                <div class="col mb-3">
                                     <button type="submit" class="btn btn-success col-12 btn-sm">
                                         Войти
                                     </button>

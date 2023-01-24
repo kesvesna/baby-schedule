@@ -19,16 +19,16 @@
         <div class="row row-cols-1 row-cols-md-2">
             <div class="col mb-2">
                 <label for="name" class="form-label">Имя</label>
-                <input required class="form-control form-control-sm" name="name"  type="text" placeholder="Анна">
+                <input required autofocus class="form-control form-control-sm" name="name"  type="text" placeholder="Анна">
                 @error('name')
-                    <div>{{$message}}</div>
+                    <div class="text-danger">{{$message}}</div>
                 @enderror
             </div>
             <div class="col mb-2">
                 <label for="email" class="form-label">Почта</label>
                 <input required class="form-control form-control-sm" name="email"  type="email" placeholder="mail@mail.ru">
                 @error('email')
-                <div>{{$message}}</div>
+                <div class="text-danger">{{$message}}</div>
                 @enderror
             </div>
         </div>
@@ -37,14 +37,14 @@
                 <label for="password" class="form-label">Пароль</label>
                 <input required class="form-control form-control-sm" name="password"  type="password">
                 @error('password')
-                    <div>{{$message}}</div>
+                    <div class="text-danger">{{$message}}</div>
                 @enderror
             </div>
             <div class="col mb-2">
                 <label for="password_confirmation" class="form-label">Повторите пароль</label>
                 <input required class="form-control form-control-sm" name="password_confirmation"  type="password">
                 @error('password_confirmation')
-                <div>{{$message}}</div>
+                <div class="text-danger">{{$message}}</div>
                 @enderror
             </div>
         </div>
