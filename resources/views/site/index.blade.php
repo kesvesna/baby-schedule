@@ -8,7 +8,7 @@
 
 @section('content')
 	<div class="container my-3">
-        <div class="card shadow-lg p-3 mb-1">
+        <div class="card shadow-lg p-2 mb-1">
 		<div class="row">
 			<h2>Сон</h2>
 		</div>
@@ -40,7 +40,7 @@
                 @endif
             </div>
         </div>
-        <div class="card shadow-lg p-3 mb-1">
+        <div class="card shadow-lg p-2 mb-1">
 		<div class="row">
 			<h2>Кормление</h2>
 		</div>
@@ -72,7 +72,7 @@
             @endif
         </div>
         </div>
-        <div class="card shadow-lg p-3 mb-1">
+        <div class="card shadow-lg p-2 mb-1">
 		<div class="row">
 			<h2>Прогулка</h2>
 		</div>

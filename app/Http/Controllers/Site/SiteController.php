@@ -7,6 +7,7 @@ use App\Models\Eats\Eat;
 use App\Models\Sleeps\Sleep;
 use App\Models\Walks\Walk;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SiteController extends Controller
 {
@@ -23,9 +24,9 @@ class SiteController extends Controller
     public function index()
     {
 
-       $sleep = Sleep::orderBy('created_at', 'desc')->first();
-       $eat = Eat::orderBy('created_at', 'desc')->first();
-       $walk = Walk::orderBy('created_at', 'desc')->first();
+       $sleep = Sleep::where('user_id', Auth::id())->orderBy('created_at', 'desc')->first();
+       $eat = Eat::where('user_id', Auth::id())->orderBy('created_at', 'desc')->first();
+       $walk = Walk::where('user_id', Auth::id())->orderBy('created_at', 'desc')->first();
 
         return view('site.index',[
             'sleep' => $sleep,

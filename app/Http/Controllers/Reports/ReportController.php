@@ -34,7 +34,7 @@ class ReportController extends Controller
         $filter = app()->make(SleepFilter::class, ['queryParams' => array_filter($data)]);
 
 
-        $sleeps = Sleep::filter($filter)->where('user_id', 1)->get();
+        $sleeps = Sleep::filter($filter)->where('user_id',  Auth::id())->get();
 
         $sleeps = $sleeps->map(function($sleep) {
             $start = strtotime($sleep->sleep_start_at);
