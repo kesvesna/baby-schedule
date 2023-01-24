@@ -4,10 +4,12 @@
 <head>
     <meta charset="utf-8">
     <title>Режим ребенка</title>
-    <meta name="description" content="">
+    <link rel="icon" href="{{asset('../assets/img/baby.svg')}}" type="image/icon type">
+
+    <meta name="description" content="Режим ребенка: сон, прогулка, кормление">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <meta property="og:title" content="">
+    <meta property="og:title" content="Режим ребенка">
     <meta property="og:type" content="">
     <meta property="og:url" content="">
     <meta property="og:image" content="">

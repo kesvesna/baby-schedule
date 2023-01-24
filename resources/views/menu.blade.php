@@ -1,5 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
+        <image class="me-2" src="{{asset('../assets/img/baby.svg')}}" alt="Baby picture" width="40" height="40">
         <a class="navbar-brand" href="{{route('site.index')}}">Режим ребенка</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
