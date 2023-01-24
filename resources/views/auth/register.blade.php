@@ -19,14 +19,14 @@
         <div class="row row-cols-1 row-cols-md-2">
             <div class="col mb-2">
                 <label for="name" class="form-label">Имя</label>
-                <input required autofocus class="form-control form-control-sm" name="name"  type="text" placeholder="Анна">
+                <input value="{{old('name')}}" required autofocus class="form-control form-control-sm" name="name"  type="text" placeholder="Анна">
                 @error('name')
                     <div class="text-danger">{{$message}}</div>
                 @enderror
             </div>
             <div class="col mb-2">
                 <label for="email" class="form-label">Почта</label>
-                <input required class="form-control form-control-sm" name="email"  type="email" placeholder="mail@mail.ru">
+                <input value="{{old('email')}}" required class="form-control form-control-sm" name="email"  type="email" placeholder="mail@mail.ru">
                 @error('email')
                 <div class="text-danger">{{$message}}</div>
                 @enderror
