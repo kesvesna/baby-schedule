@@ -8,6 +8,9 @@
 
 @section('content')
 <div class="container my-3">
+
+
+@if(count($dates) > 0)
         <div class="row row-cols-1">
             <label for="date" class="form-label">Выберите дату</label>
             <form action="{{route('report.index')}}" method="get">
@@ -32,7 +35,9 @@
         <canvas id="barDiagram"></canvas>
     </div>
 </div>
-
+@else
+    <h5>Нет данных для отчета ...</h5>
+@endif
 <script>
 
     const sleep_time = {!! json_encode($total_sleep) !!};
@@ -59,7 +64,19 @@
         options: {
             scales: {
                 y: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    ticks: {
+                        font: {
+                            size: '12',
+                        },
+                    },
+                },
+                x: {
+                    ticks: {
+                        font: {
+                            size: '12',
+                        }
+                    }
                 },
             },
             plugins: {
