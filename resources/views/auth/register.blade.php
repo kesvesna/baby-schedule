@@ -53,7 +53,7 @@
                 <button class="btn btn-sm btn-danger col-12" type="submit">Сохранить</button>
             </div>
             <div class="col">
-                <button class="btn btn-sm btn-success col-12" type="button">Назад</button>
+                <a class="btn btn-sm btn-outline-success col-12" href="{{route('login')}}" >Войти</a>
             </div>
         </div>
         </form>
