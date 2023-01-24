@@ -29,6 +29,7 @@ Route::middleware(['auth'])->group(function () {
         'report' => ReportController::class,
     ]);
 
+    Route::get('/home', [SiteController::class, 'index'])->name('site.home');
     Route::get('/', [SiteController::class, 'index'])->name('site.index');
 
 });
@@ -36,6 +37,10 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['guest'])->group(function () {
 
     Route::any('/login', function () {
+        return view('auth.login');
+    });
+
+    Route::any('/home', function () {
         return view('auth.login');
     });
 
