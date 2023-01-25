@@ -14,6 +14,7 @@ class Sleep extends Model
 
     protected $fillable = [
         'sleep_finish_at',
-        'user_id'
+        'user_id',
+        'sleep_time',
     ];
 }

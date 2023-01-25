@@ -18,6 +18,7 @@ return new class extends Migration
             $table->dateTime('sleep_start_at')->nullable()->default(null);
             $table->dateTime('sleep_finish_at')->nullable()->default(null);
             $table->foreignId('user_id');
+            $table->time('sleep_time')->nullable()->default(null);
             $table->timestamps();
             $table->softDeletes();
         });

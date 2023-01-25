@@ -13,8 +13,16 @@
                 <li class="nav-item">
                     <a class="nav-link  {{ request()->routeIs('site.index')?'active':'' }}" aria-current="page" href="{{route('site.index')}}">Главная</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link  {{ request()->routeIs('report.index')?'active':'' }}" href="{{route('report.index')}}">Отчет</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Отчет
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item {{ request()->routeIs('report.index')?'active':'' }}" href="{{route('report.index')}}">Общий</a></li>
+                        <li><a class="dropdown-item {{ request()->routeIs('sleep-report')?'active':'' }}" href="{{route('sleep-report')}}">Сон</a></li>
+                        <li><a class="dropdown-item" href="#">Кормление</a></li>
+                        <li><a class="dropdown-item" href="#">Прогулка</a></li>
+                    </ul>
                 </li>
             </ul>
             @endauth

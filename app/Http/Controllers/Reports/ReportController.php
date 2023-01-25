@@ -33,7 +33,6 @@ class ReportController extends Controller
 
         $filter = app()->make(SleepFilter::class, ['queryParams' => array_filter($data)]);
 
-
         $sleeps = Sleep::filter($filter)->where('user_id',  Auth::id())->get();
 
         $sleeps = $sleeps->map(function($sleep) {
@@ -85,7 +84,7 @@ class ReportController extends Controller
         $dates = $dates->unique();
 
         return view('reports.index', [
-           'dates' => $dates,
+            'dates' => $dates,
             'old_filter' => $data,
             'total_sleep' => $total_sleep,
             'total_eat' => $total_eat,
@@ -158,4 +157,6 @@ class ReportController extends Controller
     {
         //
     }
+
+
 }

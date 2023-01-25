@@ -1,6 +1,6 @@
 @extends('main')
 
-@section('title', 'Главная')
+@section('title', 'Общий отчет')
 
 @section('header')
     @include('menu')
@@ -14,6 +14,7 @@
         <div class="row row-cols-1">
             <label for="date" class="form-label">Выберите дату</label>
             <form action="{{route('report.index')}}" method="get">
+                @csrf
             <select
                 name="date"
                 id="date"

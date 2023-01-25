@@ -106,7 +106,7 @@
         </div>
         <div class="row d-lg-none pt-2">
             <div class="col">
-                <a class="btn btn-sm btn-primary col-12 shadow-lg" href="{{route('report.index')}}">ОТЧЕТ</a>
+                <a class="btn btn-sm btn-primary col-12 shadow-lg" href="{{route('report.index')}}">ОБЩИЙ ОТЧЕТ</a>
             </div>
         </div>
 	</div>

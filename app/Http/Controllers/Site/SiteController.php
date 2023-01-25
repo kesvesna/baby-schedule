@@ -23,7 +23,6 @@ class SiteController extends Controller
      */
     public function index()
     {
-
        $sleep = Sleep::where('user_id', Auth::id())->orderBy('created_at', 'desc')->first();
        $eat = Eat::where('user_id', Auth::id())->orderBy('created_at', 'desc')->first();
        $walk = Walk::where('user_id', Auth::id())->orderBy('created_at', 'desc')->first();
