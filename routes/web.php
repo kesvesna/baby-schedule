@@ -7,6 +7,7 @@ use App\Http\Controllers\Sleeps\SleepController as SleepController;
 use App\Http\Controllers\Eats\EatController as EatController;
 use App\Http\Controllers\Walks\WalkController as WalkController;
 use App\Http\Controllers\Reports\ReportController as ReportController;
+use App\Http\Controllers\Diapers\DiaperController as DiaperController;
 
 
 /*
@@ -27,6 +28,7 @@ Route::middleware(['auth'])->group(function () {
         'eat' => EatController::class,
         'walk' => WalkController::class,
         'report' => ReportController::class,
+        'diaper' => DiaperController::class,
     ]);
 
     Route::match(['get', 'post'], '/sleep-report', [SleepController::class, 'sleep_report'])->name('sleep-report');

@@ -22,6 +22,7 @@
                         <li><a class="dropdown-item {{ request()->routeIs('sleep-report')?'active':'' }}" href="{{route('sleep-report')}}">Сон</a></li>
                         <li><a class="dropdown-item" href="#">Кормление</a></li>
                         <li><a class="dropdown-item" href="#">Прогулка</a></li>
+                        <li><a class="dropdown-item" href="#">Замена памперса</a></li>
                     </ul>
                 </li>
             </ul>

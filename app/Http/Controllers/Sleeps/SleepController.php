@@ -120,9 +120,7 @@ class SleepController extends Controller
             :
             Sleep::where('user_id',  Auth::id())->get()->toArray();
 
-        dd($sleeps);
-
-        $total_sleep = round(array_sum($sleeps->toArray())/3600, 1);
+        $total_sleep = round(array_sum($sleeps)/3600, 1);
 
         $start_dates = Sleep::where('user_id', Auth::id())->orderBy('sleep_finish_at', 'asc')->get();
         $start_dates = $start_dates->map(function($start_date){
