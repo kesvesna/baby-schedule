@@ -13,12 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('walks', function (Blueprint $table) {
+        Schema::create('diaper_changes', function (Blueprint $table) {
             $table->id();
-            $table->dateTime('walk_start_at')->nullable()->default(null);
-            $table->dateTime('walk_finish_at')->nullable()->default(null);
-            $table->time('walk_time')->nullable()->default(null);
+            $table->dateTime('changed_at');
             $table->foreignId('user_id');
+            $table->string('comment')->nullable()->default(null);
             $table->timestamps();
             $table->softDeletes();
         });
@@ -31,10 +30,10 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('walks', function (Blueprint $table) {
+        Schema::table('diaper_changes', function (Blueprint $table) {
             $table->dropForeign(['user_id']);
         });
 
-        Schema::dropIfExists('walks');
+        Schema::dropIfExists('diaper_changes');
     }
 };

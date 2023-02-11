@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Reports;
 
 use App\Http\Controllers\Controller;
+use App\Http\Filters\Diapers\DiaperFilter;
 use App\Http\Filters\Eats\EatFilter;
 use App\Http\Filters\Sleeps\SleepFilter;
 use App\Http\Filters\Walks\WalkFilter;
 use App\Http\Requests\Sleeps\SleepFilterRequest;
+use App\Models\Diapers\Diaper;
 use Illuminate\Http\Request;
 
 use App\Models\Sleeps\Sleep;
@@ -33,10 +35,9 @@ class ReportController extends Controller
 
         $filter = app()->make(SleepFilter::class, ['queryParams' => array_filter($data)]);
 
-
         $sleeps = Sleep::filter($filter)->where('user_id',  Auth::id())->get();
 
-        $sleeps = $sleeps->map(function($sleep) {
+        $sleeps_map = $sleeps->map(function($sleep) {
             $start = strtotime($sleep->sleep_start_at);
             $finish = strtotime($sleep->sleep_finish_at);
             if($finish)
@@ -45,13 +46,13 @@ class ReportController extends Controller
             }
         });
 
-        $total_sleep = round(array_sum($sleeps->toArray())/3600, 1);
+        $total_sleep = round(array_sum($sleeps_map->toArray())/3600, 1);
 
         $filter = app()->make(EatFilter::class, ['queryParams' => array_filter($data)]);
 
         $eats = Eat::filter($filter)->where('user_id', Auth::id())->get();
 
-        $eats = $eats->map(function($eat) {
+        $eats_map = $eats->map(function($eat) {
             $start = strtotime($eat->eat_start_at);
             $finish = strtotime($eat->eat_finish_at);
             if($finish)
@@ -60,13 +61,13 @@ class ReportController extends Controller
             }
         });
 
-        $total_eat = round(array_sum($eats->toArray())/3600,1);
+        $total_eat = round(array_sum($eats_map->toArray())/3600,1);
 
         $filter = app()->make(WalkFilter::class, ['queryParams' => array_filter($data)]);
 
         $walks = Walk::filter($filter)->where('user_id', Auth::id())->get();
 
-        $walks = $walks->map(function($walk) {
+        $walks_map = $walks->map(function($walk) {
             $start = strtotime($walk->walk_start_at);
             $finish = strtotime($walk->walk_finish_at);
             if($finish)
@@ -75,21 +76,32 @@ class ReportController extends Controller
             }
         });
 
-        $total_walk = round(array_sum($walks->toArray())/3600, 1);
+        $total_walk = round(array_sum($walks_map->toArray())/3600, 1);
 
         $dates = Sleep::where('user_id', Auth::id())->get();
         $dates = $dates->map(function($date){
             return  \Carbon\Carbon::parse($date->sleep_start_at)->format('Y-m-d');
         });
 
-        $dates = $dates->unique();
+        $dates = $dates->unique()->sortDesc();
+
+        $filter = app()->make(DiaperFilter::class, ['queryParams' => array_filter($data)]);
+
+        $total_diaper_changes = Diaper::filter($filter)->where('user_id', Auth::id())->count();
+
+        $diaper_changes = Diaper::filter($filter)->where('user_id', Auth::id())->get();
 
         return view('reports.index', [
-           'dates' => $dates,
+            'dates' => $dates,
             'old_filter' => $data,
             'total_sleep' => $total_sleep,
             'total_eat' => $total_eat,
             'total_walk' => $total_walk,
+            'total_diaper_changes' => $total_diaper_changes,
+            'sleeps' => $sleeps,
+            'eats' => $eats,
+            'walks' => $walks,
+            'diaper_changes' => $diaper_changes,
         ]);
     }
 
@@ -158,4 +170,6 @@ class ReportController extends Controller
     {
         //
     }
+
+
 }

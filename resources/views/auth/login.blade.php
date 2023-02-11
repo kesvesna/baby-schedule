@@ -22,18 +22,18 @@
                                 <label for="email" class="col-md-4 col-form-label text-md-end">Email
                                     пользователя:</label>
                                 <div class="col-md-6">
-                                    <input id="email" placeholder="mail@mail.ru" type="email" class="form-control" name="email" value="" required autocomplete="email" autofocus>
+                                    <input value="{{old('email')}}" id="email" placeholder="mail@mail.ru" type="email" class="form-control" name="email" required autocomplete="email" autofocus>
                                     @error('email')
-                                    <div>{{$message}}</div>
+                                    <div class="text-danger">{{$message}}</div>
                                     @enderror
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label for="password" class="col-md-4 col-form-label text-md-end">Пароль:</label>
                                 <div class="col-md-6">
-                                    <input id="password" type="password" class="form-control" name="password" value="" required autocomplete="current-password">
+                                    <input id="password" type="password" class="form-control" name="password" required autocomplete="current-password">
                                     @error('password')
-                                    <div>{{$message}}</div>
+                                    <div class="text-danger">{{$message}}</div>
                                     @enderror
                                 </div>
                             </div>
@@ -48,7 +48,7 @@
                                 </div>
                             </div>
                             <div class="row row-cols-1 row-cols-md-2">
-                                <div class="col">
+                                <div class="col mb-3">
                                     <button type="submit" class="btn btn-success col-12 btn-sm">
                                         Войти
                                     </button>

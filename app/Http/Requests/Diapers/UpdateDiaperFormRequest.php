@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Sleeps;
+namespace App\Http\Requests\Diapers;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SleepFilterRequest extends FormRequest
+class UpdateDiaperFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,7 @@ class SleepFilterRequest extends FormRequest
     public function rules()
     {
         return [
-            'sleep_start_at' => '',
-            'sleep_finish_at' => '',
-            'date' => '',
         ];
     }
+
 }

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->dateTime('eat_start_at')->nullable()->default(null);
             $table->dateTime('eat_finish_at')->nullable()->default(null);
+            $table->time('eat_time')->nullable()->default(null);
             $table->foreignId('user_id');
             $table->timestamps();
             $table->softDeletes();

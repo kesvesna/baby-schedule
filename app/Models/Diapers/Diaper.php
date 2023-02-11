@@ -1,20 +1,20 @@
 <?php
 
-namespace App\Models\Sleeps;
+namespace App\Models\Diapers;
 
 use App\Models\Traits\Filterable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Sleep extends Model
+class Diaper extends Model
 {
-    use HasFactory,  Filterable;
+    use HasFactory, Filterable;
 
-    protected $table = "sleeps";
+    protected $table = 'diaper_changes';
 
     protected $fillable = [
-        'sleep_finish_at',
+        'changed_at',
         'user_id',
-        'sleep_time',
+        'comment'
     ];
 }

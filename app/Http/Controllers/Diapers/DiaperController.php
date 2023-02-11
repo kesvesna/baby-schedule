@@ -1,22 +1,19 @@
 <?php
 
-namespace App\Http\Controllers\Site;
+namespace App\Http\Controllers\Diapers;
 
 use App\Http\Controllers\Controller;
-use App\Models\Eats\Eat;
-use App\Models\Sleeps\Sleep;
-use App\Models\Walks\Walk;
+use App\Http\Requests\Diapers\StoreDiaperFormRequest;
+use App\Http\Requests\Diapers\UpdateDiaperFormRequest;
 use App\Models\Diapers\Diaper;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class SiteController extends Controller
+class DiaperController extends Controller
 {
     public function __construct()
     {
         $this->middleware(['auth']);
     }
-
     /**
      * Display a listing of the resource.
      *
@@ -24,18 +21,7 @@ class SiteController extends Controller
      */
     public function index()
     {
-       $sleep = Sleep::where('user_id', Auth::id())->orderBy('created_at', 'desc')->first();
-       $eat = Eat::where('user_id', Auth::id())->orderBy('created_at', 'desc')->first();
-       $walk = Walk::where('user_id', Auth::id())->orderBy('created_at', 'desc')->first();
-        $diaper = Diaper::where('user_id', Auth::id())->orderBy('created_at', 'desc')->first();
-
-
-        return view('site.index',[
-            'sleep' => $sleep,
-            'eat' => $eat,
-            'walk' => $walk,
-            'diaper' => $diaper,
-        ]);
+        //
     }
 
     /**
@@ -54,8 +40,15 @@ class SiteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(StoreDiaperFormRequest $request)
     {
+        $data = $request->validated();
+        $diaper = new Diaper();
+        $diaper->changed_at = date('Y-m-d H:i:s');
+        $diaper->user_id = Auth::id();
+        $diaper->comment = $data['comment'] ?? null;
+        $diaper->save();
+        return redirect()->route('site.index');
     }
 
     /**
@@ -87,9 +80,15 @@ class SiteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateDiaperFormRequest $request, Diaper $diaper)
     {
-        //
+        $data = $request->validated();
+        $diaper->update([
+            'changed_at' => date('Y-m-d H:i:s'),
+            'comment' => $data['comment'] ?? $diaper->comment,
+        ]);
+
+        return redirect()->route('site.index');
     }
 
     /**

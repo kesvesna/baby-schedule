@@ -104,9 +104,28 @@
             @endif
         </div>
         </div>
+        <div class="card shadow-lg p-2 mb-1">
+            <div class="row">
+                <h2>Замена памперса</h2>
+            </div>
+            <div class="row row-cols-1 mb-2">
+                <div class="col mb-2">
+                    <form action="{{route('diaper.store')}}" method="post">
+                        @csrf
+                        <button class="btn btn-success" type="submit">Замена памперса</button>
+                    </form>
+                </div>
+                <div class="col-6">
+                    @if(!empty($diaper->changed_at))
+                        <div class="col">
+                            <input class="form-control form-control-sm" name="eat_start_at" value="{{$diaper->changed_at}}" readonly>
+                        </div>
+                    @endif
+                </div>
+            </div>
         <div class="row d-lg-none pt-2">
             <div class="col">
-                <a class="btn btn-sm btn-primary col-12 shadow-lg" href="{{route('report.index')}}">ОТЧЕТ</a>
+                <a class="btn btn-sm btn-primary col-12 shadow-lg" href="{{route('report.index')}}">ОБЩИЙ ОТЧЕТ</a>
             </div>
         </div>
 	</div>
