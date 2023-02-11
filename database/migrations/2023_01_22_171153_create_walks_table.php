@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->dateTime('walk_start_at')->nullable()->default(null);
             $table->dateTime('walk_finish_at')->nullable()->default(null);
+            $table->time('walk_time')->nullable()->default(null);
             $table->foreignId('user_id');
             $table->timestamps();
             $table->softDeletes();

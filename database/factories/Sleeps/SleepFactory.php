@@ -25,10 +25,13 @@ class SleepFactory extends Factory
         $minutes = rand(5,59);
         $sleep_finish_at = Carbon::parse($dates['sleep_start_at'])->addMinute($minutes);
         $dates['sleep_finish_at'] = $sleep_finish_at;
+        $dates['sleep_time'] = Carbon::parse(date('00:00:s'))->addMinute($minutes);
+
 
         return [
             'sleep_start_at' => $dates['sleep_start_at'],
             'sleep_finish_at' =>  $dates['sleep_finish_at'],
+            'sleep_time' => $dates['sleep_time'],
             'user_id' => 1,
         ];
     }

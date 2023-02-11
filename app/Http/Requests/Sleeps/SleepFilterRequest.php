@@ -26,6 +26,7 @@ class SleepFilterRequest extends FormRequest
         return [
             'sleep_start_at' => '',
             'sleep_finish_at' => '',
+            'date' => '',
         ];
     }
 }

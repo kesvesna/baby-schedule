@@ -116,22 +116,35 @@ class SleepController extends Controller
         $data = $request->validated();
 
         $sleeps = isset($data['sleep_start_at']) ?
-            Sleep::where('sleep_start_at', '>=', $data['sleep_start_at'])->where('user_id',  Auth::id())->get()->toArray()
+            Sleep::where('sleep_start_at', '>=', $data['sleep_start_at'])
+                ->where('user_id',  Auth::id())
+                ->get()
+                ->toArray()
             :
-            Sleep::where('user_id',  Auth::id())->get()->toArray();
+            Sleep::where('user_id',  Auth::id())
+                ->whereMonth('sleep_finish_at', Carbon::now()->month)
+                ->get()
+                ->toArray();
 
         $total_sleep = round(array_sum($sleeps)/3600, 1);
 
-        $start_dates = Sleep::where('user_id', Auth::id())->orderBy('sleep_finish_at', 'asc')->get();
+        $start_dates = Sleep::where('user_id', Auth::id())->orderBy('sleep_finish_at', 'asc')
+            ->get();
+
         $start_dates = $start_dates->map(function($start_date){
-            return  \Carbon\Carbon::parse($start_date->sleep_start_at)->format('Y-m-d');
+            return  \Carbon\Carbon::parse($start_date->sleep_start_at)
+                ->format('Y-m-d');
         });
 
         $start_dates = $start_dates->unique();
 
-        $finish_dates = Sleep::where('user_id', Auth::id())->orderBy('sleep_finish_at', 'desc')->get();
+        $finish_dates = Sleep::where('user_id', Auth::id())
+            ->orderBy('sleep_finish_at', 'desc')
+            ->get();
+
         $finish_dates = $finish_dates->map(function($finish_date){
-            return  \Carbon\Carbon::parse($finish_date->sleep_finish_at)->format('Y-m-d');
+            return  \Carbon\Carbon::parse($finish_date->sleep_finish_at)
+                ->format('Y-m-d');
         });
 
         $finish_dates = $finish_dates->unique();
