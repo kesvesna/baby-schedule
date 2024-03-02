@@ -43,9 +43,9 @@ Route::middleware(['guest'])->group(function () {
         return view('auth.login');
     });
 
-//    Route::any('/home', function () {
-//        return view('auth.login');
-//    });
+    Route::any('/home', function () {
+        return view('auth.login');
+    });
 
     Route::any('/', function () {
         return view('auth.login');
