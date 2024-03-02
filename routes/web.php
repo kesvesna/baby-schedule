@@ -32,7 +32,7 @@ Route::middleware(['auth'])->group(function () {
     ]);
 
     Route::match(['get', 'post'], '/sleep-report', [SleepController::class, 'sleep_report'])->name('sleep-report');
-    //Route::get('/home', [SiteController::class, 'index'])->name('site.home');
+    Route::get('/home', [SiteController::class, 'index'])->name('site.home');
     Route::get('/', [SiteController::class, 'index'])->name('site.index');
 
 });
