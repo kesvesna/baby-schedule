@@ -32,10 +32,10 @@
             <div class="row">
                 @if(!empty($sleep->sleep_start_at))
                 <div class="col">
-                    <input class="form-control form-control-sm" name="sleep_start_at" value="{{$sleep->sleep_start_at}}" readonly>
+                    <input type="datetime-local" class="form-control form-control-sm" name="sleep_start_at" value="{{$sleep->sleep_start_at}}">
                 </div>
                 <div class="col">
-                    <input class="form-control form-control-sm" name="sleep_finish_at" value="{{$sleep->sleep_finish_at}}" readonly>
+                    <input type="datetime-local" class="form-control form-control-sm" name="sleep_finish_at" value="{{$sleep->sleep_finish_at}}">
                 </div>
                 @endif
             </div>
